@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+body{
+  height: 100vh;
+  background: url('https://static.wikia.nocookie.net/e16955ce-c49a-42be-96f1-5a28491404a4') no-repeat;
+  background-size: auto 100%;
+}
+
+.move-wrapper{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: fit-content;
+  height: fit-content;
+  z-index: 1;
+}
+
+.move-wrapper.active{
+  cursor: move;
+  user-select: none;
+  z-index: 2;
+}
+
+#changeMap{
+  margin: 1rem;
+  padding: .5rem;
+  outline: none;
+  background: #252525;
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.token{
+  height: 100px;
+}
