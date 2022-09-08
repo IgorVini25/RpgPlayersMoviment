@@ -15,8 +15,13 @@ function moveElements() {
       let topVal = parseInt(getStyle.top)
       el.style.left = `${leftVal + movementX}px`
       el.style.top = `${topVal + movementY}px`
+    }
 
-      // savePosition(el)
+    function onDragMobile(event) {
+      let touchLocation = event.targetTouches[0]
+
+      el.style.left = `${touchLocation.pageX}px`
+      el.style.top = `${touchLocation.pageY}px`
     }
 
     var isSelected = false
@@ -26,6 +31,8 @@ function moveElements() {
       if (isSelected) {
         el.classList.add('active')
         document.body.addEventListener('mousemove', onDrag)
+        document.body.addEventListener('touchmove', onDragMobile)
+        document.body.addEventListener('touchend', stopMoveMobile)
       } else {
         stopMove()
       }
@@ -37,6 +44,11 @@ function moveElements() {
       document.body.removeEventListener('mousemove', onDrag)
     }
 
+    function stopMoveMobile() {
+      isSelected = false
+      document.body.removeEventListener('touchmove', onDragMobile)
+    }
+
     forEach_I++
   })
 }
@@ -46,7 +58,7 @@ forEach_I = 1
 tokensDiv = document.querySelector('.tokens')
 
 function addToken() {
-  const file = prompt('Digite o Link da Imagem')
+  const file = prompt('Digite o caminho da Imagem')
 
   forEach_I = 1
 
