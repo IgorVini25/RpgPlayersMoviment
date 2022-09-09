@@ -12,7 +12,25 @@
     <script defer src="script.js"></script>
   </head>
   <body>
-    <button id="changeMap" onclick="addToken()">Adicionar Token</button>
+    <div class="map">
+      <div class="white"></div>
+      <div class="black"></div>
+    </div>
+    <div class="menu">
+      <div class="dropdown">
+        <button class="dropbtn">Mapa</button>
+        <div class="dropdown-content">
+          <button>Trocar</button>
+          <button>Zoom</button>
+          <div class="input">
+            Iluminação<input type="range"></input>
+          </div>
+          <div class="input">
+            Névoa<input type="range"></input>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="tokens">
       <div class="move-wrapper">

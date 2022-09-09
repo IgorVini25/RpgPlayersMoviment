@@ -9,8 +9,15 @@
 
 body{
   height: 100vh;
+  background: #1f1f1f;
+}
+
+.map{
+  width: 80%;
+  height: 100%;
   background: url('https://static.wikia.nocookie.net/e16955ce-c49a-42be-96f1-5a28491404a4') no-repeat;
-  background-size: auto 100%;
+  background-size: 100% auto;
+  position: absolute;
 }
 
 .move-wrapper{
@@ -41,4 +48,68 @@ body{
 
 .token{
   height: 90px;
+}
+
+.menu{
+  background: #1f1f1f;
+  width: 20%;
+  height: 100%;
+  margin-left: 80%;
+}
+
+.dropbtn {
+  background-color: #000;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  width: 100%;
+  border: none;
+}
+
+.dropdown {
+  width: 100%;
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #131313;
+  color: #fff;
+  z-index: 1;
+}
+
+.dropdown-content .input input{
+  width: 60%;
+}
+
+.dropdown-content .input{
+  padding: .5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-bottom: 1px solid #fff;
+}
+
+.dropdown-content button {
+  width: 100%;
+  padding: .5rem;
+  outline: none;
+  background: #131313;
+  border: none;
+  border-bottom: 1px solid #fff;
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  width: 100%;
+}
+
+.dropdown:hover .dropbtn {
+  filter: brightness(1.5);
+  border-bottom: 1px solid #fff;
 }
