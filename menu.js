@@ -1,4 +1,4 @@
-const map = document.querySelector('.map')
+const map = document.querySelector('.map img')
 
 function changeMap() {
   const url = prompt('Digite o link do mapa:')
@@ -6,6 +6,6 @@ function changeMap() {
   if (url.trim() === '') {
     alert('Erro ao trocar o mapa')
   } else {
-    map.style.background = `url('${url}') no-repeat`
+    map.src = `url('${url}') no-repeat`
   }
 }

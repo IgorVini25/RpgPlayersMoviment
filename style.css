@@ -15,9 +15,17 @@ body{
 .map{
   width: 80%;
   height: 100%;
-  background: url('https://static.wikia.nocookie.net/e16955ce-c49a-42be-96f1-5a28491404a4') no-repeat;
-  background-size: 100% auto !important;
   position: absolute;
+  overflow: scroll;
+}
+
+.map.scroll-locked{
+  overflow: hidden;
+}
+
+.map img{
+  width: 100%;
+  height: auto;
 }
 
 .move-wrapper{

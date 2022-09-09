@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,6 +14,7 @@
   </head>
   <body>
     <div class="map">
+      <img src="https://static.wikia.nocookie.net/e16955ce-c49a-42be-96f1-5a28491404a4">
       <div class="white"></div>
       <div class="black"></div>
     </div>
@@ -22,12 +23,19 @@
         <button class="dropbtn">Mapa</button>
         <div class="dropdown-content">
           <button onclick="changeMap()">Trocar</button>
-          <button>Zoom</button>
+          <button><b>ZOOM E POSICIONAMENTO</b></button>
           <div class="input">
-            Iluminação<input type="range"></input>
+            Largura<input type="range" id="width" value="100"></input>
           </div>
           <div class="input">
-            Névoa<input type="range"></input>
+            Altura<input type="range" id="height" value="0"></input>
+          </div>
+          <button><b>MODIFICAÇÕES</b></button>
+          <div class="input">
+            Iluminação<input type="range" id="light" value="0"></input>
+          </div>
+          <div class="input">
+            Névoa<input type="range" id="smoke" value="0"></input>
           </div>
         </div>
       </div>
