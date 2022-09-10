@@ -2,12 +2,26 @@
 let alreadyMove = false
 
 let forEach_I = 1
+let selectedToken = null
 
 moveElements()
 function moveElements() {
   const moveWrapper = document.querySelectorAll('.move-wrapper')
   moveWrapper.forEach(el => {
     el.dataset.id = forEach_I
+
+    el.addEventListener('dblclick', () => {
+      if(selectedToken){
+        document.querySelector(`.move-wrapper[data-id="${selectedToken}"]`).classList.remove("selected")
+      }
+      if(el.dataset.id !== selectedToken){
+        selectedToken = el.dataset.id
+        el.classList.add('selected')
+      } else {
+        selectedToken = null
+        el.classList.remove('selected')
+      }
+    })
 
     function onDrag({ movementX, movementY }) {
       let getStyle = window.getComputedStyle(el)
@@ -55,21 +69,4 @@ function moveElements() {
 
 forEach_I = 1
 
-tokensDiv = document.querySelector('.tokens')
 
-function addToken() {
-  const file = prompt('Digite o caminho da Imagem')
-
-  forEach_I = 1
-
-  tokensDiv.innerHTML += `
-    <div class="move-wrapper">
-      <div class="move">
-        <img src="./img/tokens/${file}.png" class="token" />
-      </div>
-    </div>
-  `
-
-  // tokensPos = []
-  moveElements()
-}

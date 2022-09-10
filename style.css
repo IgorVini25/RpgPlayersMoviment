@@ -55,7 +55,11 @@ body{
 }
 
 .token{
-  height: 90px;
+  height: 80px;
+}
+
+.move-wrapper.selected{
+  background: #fff;
 }
 
 .menu{
@@ -75,6 +79,7 @@ body{
 }
 
 .dropdown {
+  border-bottom: 1px solid #fff;
   width: 100%;
   position: relative;
   display: inline-block;
@@ -118,6 +123,6 @@ body{
 }
 
 .dropdown:hover .dropbtn {
-  filter: brightness(1.5);
   border-bottom: 1px solid #fff;
+  filter: brightness(1.5);
 }
