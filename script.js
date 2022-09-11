@@ -11,10 +11,12 @@ function moveElements() {
     el.dataset.id = forEach_I
 
     el.addEventListener('dblclick', () => {
-      if(selectedToken){
-        document.querySelector(`.move-wrapper[data-id="${selectedToken}"]`).classList.remove("selected")
+      if (selectedToken) {
+        document
+          .querySelector(`.move-wrapper[data-id="${selectedToken}"]`)
+          .classList.remove('selected')
       }
-      if(el.dataset.id !== selectedToken){
+      if (el.dataset.id !== selectedToken) {
         selectedToken = el.dataset.id
         el.classList.add('selected')
       } else {
@@ -22,6 +24,34 @@ function moveElements() {
         el.classList.remove('selected')
       }
     })
+
+    let timer
+    addTokenSelectionMobile()
+    function addTokenSelectionMobile() {
+      el.addEventListener('touchstart', e => {
+        console.log('comeco')
+        timer = setTimeout(() => {
+          if (selectedToken) {
+            document
+              .querySelector(`.move-wrapper[data-id="${selectedToken}"]`)
+              .classList.remove('selected')
+          }
+          if (el.dataset.id !== selectedToken) {
+            selectedToken = el.dataset.id
+            el.classList.add('selected')
+          } else {
+            selectedToken = null
+            el.classList.remove('selected')
+          }
+        }, 500)
+      })
+      el.addEventListener('touchend', e => {
+        console.log('cabo')
+        if (timer) {
+          clearTimeout(timer)
+        }
+      })
+    }
 
     function onDrag({ movementX, movementY }) {
       let getStyle = window.getComputedStyle(el)
@@ -32,6 +62,8 @@ function moveElements() {
     }
 
     function onDragMobile(event) {
+      el.removeEventListener('touchstart', () => {})
+      el.removeEventListener('touchend', () => {})
       let touchLocation = event.targetTouches[0]
 
       el.style.left = `${touchLocation.pageX}px`
@@ -59,6 +91,7 @@ function moveElements() {
     }
 
     function stopMoveMobile() {
+      addTokenSelectionMobile()
       isSelected = false
       document.body.removeEventListener('touchmove', onDragMobile)
     }
@@ -68,5 +101,3 @@ function moveElements() {
 }
 
 forEach_I = 1
-
-

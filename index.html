@@ -25,10 +25,12 @@
           <button onclick="changeMap()">Trocar</button>
           <button><b>ZOOM E POSICIONAMENTO</b></button>
           <div class="input">
-            Largura<input type="range" id="width" value="100"></input>
+            Largura Auto <input class="switch switch--shadow" type="radio" id="width" name="mapPosition" oninput="onInput('width-height')" checked />
+            <label for="width"></label>
           </div>
           <div class="input">
-            Altura<input type="range" id="height" value="0"></input>
+            Altura Auto <input class="switch switch--shadow" type="radio" id="height" oninput="onInput('width-height')" name="mapPosition" />
+            <label for="height"></label>
           </div>
           <button><b>MODIFICAÇÕES</b></button>
           <div class="input">
@@ -44,6 +46,13 @@
         <div class="dropdown-content">
           <button onclick="addToken()">Adicionar</button>
           <button onclick="removeToken()">Remover</button>
+          <button><b>TAMANHO</b></button>
+          <div class="input">
+            <div class="token-size-div">
+              <input type="number" placeholder="Tamanho do token" value="75" id="token-size" /> px
+            </div>
+            <button onclick="changeTokenSize()" id="token-size-btn">Atualizar</button>
+          </div>
         </div>
       </div>
     </div>

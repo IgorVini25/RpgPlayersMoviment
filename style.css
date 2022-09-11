@@ -16,16 +16,18 @@ body{
   width: 80%;
   height: 100%;
   position: absolute;
-  overflow: scroll;
-}
-
-.map.scroll-locked{
   overflow: hidden;
 }
+
 
 .map img{
   width: 100%;
   height: auto;
+}
+
+.map img.width-auto{
+  width: auto;
+  height: 100%;
 }
 
 .move-wrapper{
@@ -55,7 +57,7 @@ body{
 }
 
 .token{
-  height: 80px;
+  height: 75px;
 }
 
 .move-wrapper.selected{
@@ -125,4 +127,76 @@ body{
 .dropdown:hover .dropbtn {
   border-bottom: 1px solid #fff;
   filter: brightness(1.5);
+}
+
+#token-size{
+  width: 25%;
+  text-align: center;
+  margin-right: 0.3rem;
+}
+
+#token-size-btn{
+  width: 30%;
+  background: #cecece;
+  color: #000;
+  margin-right: 4rem;
+}
+
+.token-size-div{
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  justify-content: center;
+}
+
+.switch {
+  position: absolute;
+  margin-left: -9999px;
+  visibility: hidden;
+}
+
+.switch + label {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+}
+
+.switch--shadow + label {
+  padding: 2px;
+  width: 60px;
+  height: 30px;
+  background-color: #dddddd;
+  border-radius: 60px;
+}
+
+.switch--shadow + label:before,
+.switch--shadow + label:after {
+  display: block;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  bottom: 1px;
+  content: '';
+}
+.switch--shadow + label:before {
+  right: 1px;
+  background-color: #f1f1f1;
+  border-radius: 60px;
+  transition: all 0.4s;
+}
+.switch--shadow + label:after {
+  width: 31px;
+  background-color: #fff;
+  border-radius: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s;
+}
+
+.switch--shadow:checked + label:before {
+  background-color: #8ce196;
+}
+.switch--shadow:checked + label:after {
+  transform: translateX(30px);
 }
