@@ -34,7 +34,7 @@ function addToken() {
   tokensDiv.innerHTML += `
     <div class="move-wrapper">
       <div class="move">
-        <img src="./img/${file}.png" class="token" />
+        <img src="./img/tokens/${file}.png" class="token" />
       </div>
     </div>
   `
