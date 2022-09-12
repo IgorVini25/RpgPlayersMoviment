@@ -107,8 +107,8 @@ function moveMap() {
     function onMoveMobile(event) {
       let touchLocation = event.targetTouches[0]
 
-      mapImg.style.left = `${touchLocation.pageX}px`
-      mapImg.style.top = `${touchLocation.pageY}px`
+      mapImg.style.left = `${touchLocation.pageX - 1300}px`
+      mapImg.style.top = `${touchLocation.pageY - 700}px`
     }
 
     var isSelected = false
