@@ -25,30 +25,30 @@ function moveElements() {
       }
     })
 
-    let timer
+    let doubleTap = false
     addTokenSelectionMobile()
     function addTokenSelectionMobile() {
       el.addEventListener('touchstart', e => {
-        console.log('comeco')
-        timer = setTimeout(() => {
-          if (selectedToken) {
-            document
-              .querySelector(`.move-wrapper[data-id="${selectedToken}"]`)
-              .classList.remove('selected')
-          }
-          if (el.dataset.id !== selectedToken) {
-            selectedToken = el.dataset.id
-            el.classList.add('selected')
-          } else {
-            selectedToken = null
-            el.classList.remove('selected')
-          }
-        }, 500)
-      })
-      el.addEventListener('touchend', e => {
-        console.log('cabo')
-        if (timer) {
-          clearTimeout(timer)
+        if (!doubleTap) {
+          doubleTap = true
+          setTimeout(function () {
+            doubleTap = false
+          }, 300)
+          return false
+        }
+        e.preventDefault()
+
+        if (selectedToken) {
+          document
+            .querySelector(`.move-wrapper[data-id="${selectedToken}"]`)
+            .classList.remove('selected')
+        }
+        if (el.dataset.id !== selectedToken) {
+          selectedToken = el.dataset.id
+          el.classList.add('selected')
+        } else {
+          selectedToken = null
+          el.classList.remove('selected')
         }
       })
     }
@@ -62,8 +62,6 @@ function moveElements() {
     }
 
     function onDragMobile(event) {
-      el.removeEventListener('touchstart', () => {})
-      el.removeEventListener('touchend', () => {})
       let touchLocation = event.targetTouches[0]
 
       el.style.left = `${touchLocation.pageX}px`
@@ -78,20 +76,19 @@ function moveElements() {
         el.classList.add('active')
         document.body.addEventListener('mousemove', onDrag)
         document.body.addEventListener('touchmove', onDragMobile)
-        document.body.addEventListener('touchend', stopMoveMobile)
+        document.body.addEventListener('touchend', stopDragMobile)
       } else {
-        stopMove()
+        stopDrag()
       }
     })
 
-    function stopMove() {
+    function stopDrag() {
       isSelected = false
       el.classList.remove('active')
       document.body.removeEventListener('mousemove', onDrag)
     }
 
-    function stopMoveMobile() {
-      addTokenSelectionMobile()
+    function stopDragMobile() {
       isSelected = false
       document.body.removeEventListener('touchmove', onDragMobile)
     }

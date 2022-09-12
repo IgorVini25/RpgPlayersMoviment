@@ -15,20 +15,27 @@ body{
 .map{
   width: 80%;
   height: 100%;
-  position: absolute;
   overflow: hidden;
+  position: relative;
 }
 
+.map.width-auto{
+  display: flex;
+  justify-content: center;
+}
 
 .map img{
   width: 100%;
   height: auto;
+  margin: 0 auto;
+  position: absolute;
 }
 
-.map img.width-auto{
+.map.width-auto img{
   width: auto;
   height: 100%;
 }
+
 
 .move-wrapper{
   position: absolute;
@@ -68,7 +75,9 @@ body{
   background: #1f1f1f;
   width: 20%;
   height: 100%;
-  margin-left: 80%;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .dropbtn {
@@ -129,8 +138,8 @@ body{
   filter: brightness(1.5);
 }
 
-#token-size{
-  width: 25%;
+#token-size, #zoom{
+  width: 45%;
   text-align: center;
   margin-right: 0.3rem;
 }
@@ -142,7 +151,7 @@ body{
   margin-right: 4rem;
 }
 
-.token-size-div{
+.input-div{
   display: flex;
   align-items: center;
   width: fit-content;

@@ -14,7 +14,7 @@
   </head>
   <body>
     <div class="map">
-      <img src="./img/maps/ordem.webp">
+      <img src="./img/maps/ordem.webp" class="map-move">
       <div class="white"></div>
       <div class="black"></div>
     </div>
@@ -25,11 +25,21 @@
           <button onclick="changeMap()">Trocar</button>
           <button><b>ZOOM E POSICIONAMENTO</b></button>
           <div class="input">
-            Largura Auto <input class="switch switch--shadow" type="radio" id="width" name="mapPosition" oninput="onInput('width-height')" checked />
+            <div class="input-div">
+              <input type="number" placeholder="zoom" value="100" id="zoom" /> %
+            </div>
+            <button onclick="changeZoom()" id="token-size-btn">Atualizar</button>
+          </div>
+          <div class="input">
+            Mover <input class="switch switch--shadow" type="checkbox" id="map-move" name="mapMove" oninput="moveMap()" />
+            <label for="map-move"></label>
+          </div>
+          <div class="input">
+            Largura Auto <input class="switch switch--shadow" type="radio" id="width" name="mapPosition" oninput="onInput('width-height')" />
             <label for="width"></label>
           </div>
           <div class="input">
-            Altura Auto <input class="switch switch--shadow" type="radio" id="height" oninput="onInput('width-height')" name="mapPosition" />
+            Altura Auto <input class="switch switch--shadow" type="radio" id="height" oninput="onInput('width-height')" name="mapPosition" checked />
             <label for="height"></label>
           </div>
           <button><b>MODIFICAÇÕES</b></button>
@@ -48,7 +58,7 @@
           <button onclick="removeToken()">Remover</button>
           <button><b>TAMANHO</b></button>
           <div class="input">
-            <div class="token-size-div">
+            <div class="input-div">
               <input type="number" placeholder="Tamanho do token" value="75" id="token-size" /> px
             </div>
             <button onclick="changeTokenSize()" id="token-size-btn">Atualizar</button>
