@@ -90,64 +90,43 @@ function onInput(type) {
   }
 }
 
-const mapMoveBtn = document.querySelector('#map-move')
-const mapImg = document.querySelector('.map img.map-move')
-let mapImgClick
-function moveMap() {
-  if (mapMoveBtn.checked) {
-    mapImg.removeEventListener('click', mapImgClick)
-    function onMove({ movementX, movementY }) {
-      let getStyle = window.getComputedStyle(mapImg)
-      let leftVal = parseInt(getStyle.left)
-      let topVal = parseInt(getStyle.top)
-      mapImg.style.left = `${leftVal + movementX}px`
-      mapImg.style.top = `${topVal + movementY}px`
-    }
-
-    function onMoveMobile(event) {
-      let touchLocation = event.targetTouches[0]
-
-      mapImg.style.left = `${touchLocation.pageX - 1300}px`
-      mapImg.style.top = `${touchLocation.pageY - 700}px`
-    }
-
-    var isSelected = false
-
-    mapImgClick = () => {
-      isSelected = !isSelected
-      if (isSelected) {
-        mapImg.classList.add('active')
-        document.body.addEventListener('mousemove', onMove)
-        document.body.addEventListener('touchmove', onMoveMobile)
-        document.body.addEventListener('touchend', stopMoveMobile)
-      } else {
-        stopMove()
-      }
-    }
-
-    mapImg.addEventListener('click', mapImgClick)
-
-    function stopMove() {
-      isSelected = false
-      mapImg.classList.remove('active')
-      document.body.removeEventListener('mousemove', onMove)
-    }
-
-    function stopMoveMobile() {
-      isSelected = false
-      document.body.removeEventListener('touchmove', onMoveMobile)
-    }
-  } else {
-    console.log('a')
-    mapImg.removeEventListener('click', mapImgClick)
+let mapAlreadyMove = false 
+let mapLeft = 0
+let mapTop = 0
+function moveMap(direction, multi = 1) {
+  if(!mapAlreadyMove){
+    map.classList.remove("before-move")
+    mapAlreadyMove = !mapAlreadyMove
   }
+
+  if(direction === 'left'){
+    map.style.left = mapLeft - (10 * multi) + "px"
+    mapLeft -= (10 * multi) 
+  }
+  
+  if(direction === 'top'){
+    map.style.top = mapTop - (10 * multi) + "px"
+    mapTop -= (10 * multi) 
+  }
+
+  if(direction === 'bottom'){
+    map.style.top = mapTop + (10 * multi) + "px"
+    mapTop += (10 * multi) 
+  
+  }
+
+  if(direction === 'right'){
+    map.style.left = mapLeft + (10 * multi) + "px"
+    mapLeft += (10 * multi) 
+  }
+
 }
 
 const zoomValue = document.querySelector('#zoom')
 function changeZoom() {
   if (widthAuto) {
-    mapImg.style.height = zoomValue.value + '%'
+    map.style.height = zoomValue.value + '%'
   } else {
-    mapImg.style.width = zoomValue.value + '%'
+    map.style.width = zoomValue.value + '%'
   }
 }

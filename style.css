@@ -32,6 +32,11 @@ body{
   position: absolute;
 }
 
+.map img.before-move{
+  left: 50%;
+  transform: translateX(-50%)
+}
+
 .map.width-auto img{
   width: auto;
   height: 100%;
@@ -70,6 +75,20 @@ body{
 
 .move-wrapper.selected{
   background: #fff;
+}
+
+.map-position-buttons{
+  display: flex;
+  gap: .5rem;
+  padding: .7rem;
+  border-bottom: 1px solid #fff;
+}
+
+.menu .dropdown .dropdown-content .map-position-buttons button{
+  border: none;
+  background: #cecece;
+  color: #000;
+  text-align: center;
 }
 
 .menu{

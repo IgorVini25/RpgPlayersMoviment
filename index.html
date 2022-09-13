@@ -14,7 +14,7 @@
   </head>
   <body>
     <div class="map">
-      <img src="./img/maps/ordem.webp" class="map-move">
+      <img src="./img/maps/ordem.webp" class="before-move">
       <div class="white"></div>
       <div class="black"></div>
     </div>
@@ -23,17 +23,27 @@
         <button class="dropbtn">Mapa</button>
         <div class="dropdown-content">
           <button onclick="changeMap()">Trocar</button>
-          <button><b>ZOOM E POSICIONAMENTO</b></button>
+          <button><b>ZOOM</b></button>
           <div class="input">
             <div class="input-div">
               <input type="number" placeholder="zoom" value="100" id="zoom" /> %
             </div>
             <button onclick="changeZoom()" id="token-size-btn">Atualizar</button>
           </div>
-          <div class="input">
-            Mover <input class="switch switch--shadow" type="checkbox" id="map-move" name="mapMove" oninput="moveMap()" />
-            <label for="map-move"></label>
+          <button><b>POSICIONAMENTO</b></button>
+          <div class="map-position-buttons">
+            <button onclick="moveMap('left')">←</button>
+            <button onclick="moveMap('top')">↑</button>
+            <button onclick="moveMap('bottom')">↓</button>
+            <button onclick="moveMap('right')">→</button>
           </div>
+          <div class="map-position-buttons">
+            <button onclick="moveMap('left', 5)">←<br>←</button>
+            <button onclick="moveMap('top', 5)">↑↑</button>
+            <button onclick="moveMap('bottom', 5)">↓↓</button>
+            <button onclick="moveMap('right', 5)">→<br>→</button>
+          </div>
+          <button><b>LARGURA E ALTURA</b></button>
           <div class="input">
             Largura Auto <input class="switch switch--shadow" type="radio" id="width" name="mapPosition" oninput="onInput('width-height')" />
             <label for="width"></label>
