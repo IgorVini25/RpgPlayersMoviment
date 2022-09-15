@@ -2,7 +2,7 @@
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <title>MAP RPG</title>
     <link rel="stylesheet" href="style.css" />
     <link
@@ -14,9 +14,28 @@
   </head>
   <body>
     <div class="map">
-      <img src="./img/maps/ordem.webp" class="before-move">
-      <div class="white"></div>
-      <div class="black"></div>
+      <div class="content">
+        <div class="map-img">
+          <img src="./img/maps/ordem.webp" class="before-move">
+        </div>
+        <div class="white"></div>
+        <div class="black"></div>
+  
+        <div class="tokens">
+          <div class="move-wrapper">
+            <div class="move">
+              <img src="./img/tokens/alessandro.png" class="token" />
+            </div>
+          </div>
+    
+          <div class="move-wrapper">
+            <div class="move">
+              <img src="./img/tokens/manoel.png" class="token" />
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
     <div class="menu">
       <div class="dropdown">
@@ -26,7 +45,7 @@
           <button><b>ZOOM</b></button>
           <div class="input">
             <div class="input-div">
-              <input type="number" placeholder="zoom" value="100" id="zoom" /> %
+              <input type="number" placeholder="zoom" value="1" id="zoom" /> x
             </div>
             <button onclick="changeZoom()" id="token-size-btn">Atualizar</button>
           </div>
@@ -73,20 +92,13 @@
             </div>
             <button onclick="changeTokenSize()" id="token-size-btn">Atualizar</button>
           </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="tokens">
-      <div class="move-wrapper">
-        <div class="move">
-          <img src="./img/tokens/alessandro.png" class="token" />
-        </div>
-      </div>
-
-      <div class="move-wrapper">
-        <div class="move">
-          <img src="./img/tokens/manoel.png" class="token" />
+          <button><b>ILUMINAÇÃO</b></button>
+          <div class="input input-light-div">
+            <div>
+              Opacidade <input type="text" class="input-light" id="light-value" value="0.5">
+            </div>
+              <button onclick="handleTokenLight()">Ligar/Desligar</button>
+            </div>
         </div>
       </div>
     </div>

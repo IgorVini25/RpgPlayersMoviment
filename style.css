@@ -20,28 +20,60 @@ body{
   position: relative;
 }
 
-.map.width-auto{
-  display: flex;
-  justify-content: center;
+.map .content{
+  width: 100%;
+  height: 100%;
 }
 
-.map img{
+.map .map-img img{
   width: 100%;
   height: auto;
   margin: 0 auto;
   position: absolute;
 }
 
-.map img.before-move{
-  left: 50%;
-  transform: translateX(-50%)
+.map-img{
+  display: flex;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 .map.width-auto img{
   width: auto;
   height: 100%;
+  z-index: 1;
 }
 
+.map .white, .map .black{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.map .white{
+  background: #fff;
+  
+}
+
+.map.width-auto .white{
+  width: auto;
+  height: 100%;
+}
+
+.map .black{
+  background: #000;
+}
+
+.map.width-auto .black{
+  width: auto;
+  height: 100%;
+}
 
 .move-wrapper{
   position: absolute;
@@ -50,13 +82,13 @@ body{
   transform: translate(-50%, -50%);
   width: fit-content;
   height: fit-content;
-  z-index: 1;
+  z-index: 3;
 }
 
 .move-wrapper.active{
   cursor: move;
   user-select: none;
-  z-index: 2;
+  z-index: 4;
 }
 
 #changeMap{
@@ -69,9 +101,27 @@ body{
   cursor: pointer;
 }
 
+.tokens{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 .token{
   height: 75px;
 }
+
+.move-wrapper.light{
+  padding: 1rem 1.8rem;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  -webkit-box-shadow: 0px 0px 50px 1px rgba(255,255,255,1);
+-moz-box-shadow: 0px 0px 50px 1px rgba(255,255,255,1);
+box-shadow: 0px 0px 50px 1px rgba(255,255,255,1);
+}
+
 
 .move-wrapper.selected{
   background: #fff;
@@ -177,6 +227,30 @@ body{
   align-items: center;
   width: fit-content;
   justify-content: center;
+}
+
+.input-light-div{
+  display: flex;
+  flex-direction: column;
+}
+
+.input-light-div button{
+  width: 60%;
+  background: #cecece;
+  color: #000;
+  margin-right: 1rem;
+}
+
+.input-light-div div{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.dropdown-content .input.input-light-div .input-light{
+  width: 40%;
+  text-align: center;
 }
 
 .switch {
