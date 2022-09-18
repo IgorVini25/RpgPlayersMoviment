@@ -1,14 +1,10 @@
-const map = document.querySelector('.map img')
+const map = document.querySelector('.map img');
 
-function changeMap() {
-  const url = prompt('Digite o link do mapa:')
-
-  if (url.trim() === '') {
-    alert('Erro ao trocar o mapa')
-  } else {
-    if (url === 'ordem') {
-      map.src = './img/maps/ordem.webp'
-    } else {
+function changeMap(url = null) {
+  if(!url){
+  const url = prompt('Digite o link do mapa:');
+  } // definir mapa por codigo caso precise.
+  if (url.trim() !== '') {
       fetch(url)
         .then(function (data) {
           return data.blob()
@@ -18,36 +14,31 @@ function changeMap() {
           map.src = imgURL
         })
         .catch(function (e) {
-          alert('Erro ao acessar a imagem')
+          alert('Erro ao acessar a imagem');
         })
-    }
+  } else {
+    alert('Erro ao trocar o mapa');
   }
 }
 
 tokensDiv = document.querySelector('.tokens')
+
 function addToken() {
   const file = prompt('Digite o caminho da Imagem')
 
-  forEach_I = 0
-
-  tokensDiv.innerHTML += `
+  $(".tokens").append(`
     <div class="move-wrapper">
       <div class="move">
         <img src="./img/tokens/${file}.png" class="token" />
       </div>
     </div>
-  `
-
-  moveElements()
+  `);
+  //moveElements()
 }
 
-function removeToken() {
-  if (!selectedToken) {
-    alert('Selecione um token para excluir')
-  } else {
-    $(`.move-wrapper[data-id="${selectedToken}"]`).remove()
-    selectedToken = null
-  }
+function removeToken() {// fix
+    $(`.move-wrapper.selected`).remove()
+    selectedToken = null;
 }
 
 function changeTokenSize() {

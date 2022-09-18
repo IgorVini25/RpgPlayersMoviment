@@ -1,105 +1,108 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <title>MAP RPG</title>
-    <link rel="stylesheet" href="style.css" />
-    <script src="./assets/js/jquery.js"></script>
-    <script src="./assets/js/jquery-ui.min.js"></script>
-    <link rel="stylesheet" href="./assets/css/jquery-ui.min.css">
-    <script defer src="./assets/js/script.js"></script>
-    <script defer src="./assets/js/menu.js"></script>
-  </head>
-  <body>
-    <div class="map">
-      <div class="content">
-        <div class="map-img">
-          <img src="./assets/img/maps/ordem.webp" class="before-move">
-        </div>
-        <div class="white"></div>
-        <div class="black"></div>
-  
-        <div class="tokens">
-          <div class="move-wrapper">
-            <div class="move">
-              <img src="./assets/img/tokens/alessandro.png" class="token" />
-            </div>
-          </div>
-    
-          <div class="move-wrapper">
-            <div class="move">
-              <img src="./assets/img/tokens/manoel.png" class="token" />
-            </div>
-          </div>
-        </div>
-      </div>
 
-    </div>
-    <div class="menu">
-      <div class="dropdown">
-        <button class="dropbtn">Mapa</button>
-        <div class="dropdown-content">
-          <button onclick="changeMap()">Trocar</button>
-          <button><b>ZOOM</b></button>
-          <div class="input">
-            <div class="input-div">
-              <input type="number" placeholder="zoom" value="1" id="zoom" /> x
-            </div>
-            <button onclick="changeZoom()" id="token-size-btn">Atualizar</button>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <title>MAP RPG</title>
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <script src="./assets/js/jquery.js"></script>
+  <script src="./assets/js/jquery-ui.min.js"></script>
+  <link rel="stylesheet" href="./assets/css/jquery-ui.min.css">
+  <script defer src="./assets/js/script.js"></script>
+  <script defer src="./assets/js/menu.js"></script>
+</head>
+
+<body>
+  <div class="map">
+    <div class="content">
+      <div class="map-img">
+        <img src="./assets/img/maps/ordem.webp" class="before-move">
+      </div>
+      <div class="white"></div>
+      <div class="black"></div>
+      <div class="tokens">
+        <div class="move-wrapper">
+          <div class="move">
+            <img src="./assets/img/tokens/alessandro.png" class="token" />
           </div>
-          <button><b>POSICIONAMENTO</b></button>
-          <div class="map-position-buttons">
-            <button onclick="moveMap('left')">←</button>
-            <button onclick="moveMap('top')">↑</button>
-            <button onclick="moveMap('bottom')">↓</button>
-            <button onclick="moveMap('right')">→</button>
-          </div>
-          <div class="map-position-buttons">
-            <button onclick="moveMap('left', 5)">←<br>←</button>
-            <button onclick="moveMap('top', 5)">↑↑</button>
-            <button onclick="moveMap('bottom', 5)">↓↓</button>
-            <button onclick="moveMap('right', 5)">→<br>→</button>
-          </div>
-          <button><b>LARGURA E ALTURA</b></button>
-          <div class="input">
-            Largura Auto <input class="switch switch--shadow" type="radio" id="width" name="mapPosition" oninput="onInput('width-height')" />
-            <label for="width"></label>
-          </div>
-          <div class="input">
-            Altura Auto <input class="switch switch--shadow" type="radio" id="height" oninput="onInput('width-height')" name="mapPosition" checked />
-            <label for="height"></label>
-          </div>
-          <button><b>MODIFICAÇÕES</b></button>
-          <div class="input">
-            Iluminação<input type="range" id="light" value="0"></input>
-          </div>
-          <div class="input">
-            Névoa<input type="range" id="smoke" value="0"></input>
+        </div>
+        <div class="move-wrapper">
+          <div class="move">
+            <img src="./assets/img/tokens/manoel.png" class="token" />
           </div>
         </div>
       </div>
-      <div class="dropdown">
-        <button class="dropbtn">Tokens</button>
-        <div class="dropdown-content">
-          <button onclick="addToken()">Adicionar</button>
-          <button onclick="removeToken()">Remover</button>
-          <button><b>TAMANHO</b></button>
-          <div class="input">
-            <div class="input-div">
-              <input type="number" placeholder="Tamanho do token" value="75" id="token-size" /> px
-            </div>
-            <button onclick="changeTokenSize()" id="token-size-btn">Atualizar</button>
+    </div>
+
+  </div>
+  <div class="menu">
+    <div class="dropdown">
+      <button class="dropbtn">Mapa</button>
+      <div class="dropdown-content">
+        <button onclick="changeMap()">Trocar</button>
+        <button><b>ZOOM</b></button>
+        <div class="input">
+          <div class="input-div">
+            <input type="number" placeholder="zoom" value="1" id="zoom" /> x
           </div>
-          <button><b>ILUMINAÇÃO</b></button>
-          <div class="input input-light-div">
-            <div>
-              Opacidade <input type="text" class="input-light" id="light-value" value="0.5">
-            </div>
-              <button onclick="handleTokenLight()">Ligar/Desligar</button>
-            </div>
+          <button onclick="changeZoom()" id="token-size-btn">Atualizar</button>
+        </div>
+        <button><b>POSICIONAMENTO</b></button>
+        <div class="map-position-buttons">
+          <button onclick="moveMap('left')">←</button>
+          <button onclick="moveMap('top')">↑</button>
+          <button onclick="moveMap('bottom')">↓</button>
+          <button onclick="moveMap('right')">→</button>
+        </div>
+        <div class="map-position-buttons">
+          <button onclick="moveMap('left', 5)">←<br>←</button>
+          <button onclick="moveMap('top', 5)">↑↑</button>
+          <button onclick="moveMap('bottom', 5)">↓↓</button>
+          <button onclick="moveMap('right', 5)">→<br>→</button>
+        </div>
+        <button><b>LARGURA E ALTURA</b></button>
+        <div class="input">
+          Largura Auto <input class="switch switch--shadow" type="radio" id="width" name="mapPosition"
+            oninput="onInput('width-height')" />
+          <label for="width"></label>
+        </div>
+        <div class="input">
+          Altura Auto <input class="switch switch--shadow" type="radio" id="height" oninput="onInput('width-height')"
+            name="mapPosition" checked />
+          <label for="height"></label>
+        </div>
+        <button><b>MODIFICAÇÕES</b></button>
+        <div class="input">
+          Iluminação<input type="range" id="light" value="0"></input>
+        </div>
+        <div class="input">
+          Névoa<input type="range" id="smoke" value="0"></input>
         </div>
       </div>
     </div>
-  </body>
+    <div class="dropdown">
+      <button class="dropbtn">Tokens</button>
+      <div class="dropdown-content">
+        <button onclick="addToken()">Adicionar</button>
+        <button onclick="removeToken()">Remover</button>
+        <button><b>TAMANHO</b></button>
+        <div class="input">
+          <div class="input-div">
+            <input type="number" placeholder="Tamanho do token" value="75" id="token-size" /> px
+          </div>
+          <button onclick="changeTokenSize()" id="token-size-btn">Atualizar</button>
+        </div>
+        <button><b>ILUMINAÇÃO</b></button>
+        <div class="input input-light-div">
+          <div>
+            Opacidade <input type="text" class="input-light" id="light-value" value="0.5">
+          </div>
+          <button onclick="handleTokenLight()">Ligar/Desligar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
 </html>
