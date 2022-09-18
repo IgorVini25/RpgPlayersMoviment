@@ -28,7 +28,7 @@ tokensDiv = document.querySelector('.tokens')
 function addToken() {
   const file = prompt('Digite o caminho da Imagem')
 
-  forEach_I = 1
+  forEach_I = 0
 
   tokensDiv.innerHTML += `
     <div class="move-wrapper">
@@ -45,10 +45,7 @@ function removeToken() {
   if (!selectedToken) {
     alert('Selecione um token para excluir')
   } else {
-    const token = document.querySelector(
-      `.move-wrapper[data-id="${selectedToken}"]`
-    )
-    token.remove()
+    $(`.move-wrapper[data-id="${selectedToken}"]`).remove()
     selectedToken = null
   }
 }
@@ -56,19 +53,14 @@ function removeToken() {
 function changeTokenSize() {
   const size = document.querySelector('#token-size').value + 'px'
   if (!selectedToken) {
-    const tokens = document.querySelectorAll('.move-wrapper .move img')
-    tokens.forEach(token => {
-      token.style.height = size
+    const tokens = $('.move-wrapper .move img')
+    $.each(tokens, (index, val) => {
+      $(val).height(size)
     })
   } else {
-    const token = document.querySelector(
-      `.move-wrapper[data-id="${selectedToken}"] .move img`
-    )
-    token.style.height = size
+    $(`.move-wrapper[data-id="${selectedToken}"] .move img`).height(size)
 
-    document
-      .querySelector(`.move-wrapper[data-id="${selectedToken}"]`)
-      .classList.remove('selected')
+    $(`.move-wrapper[data-id="${selectedToken}"]`).removeClass('selected')
     selectedToken = null
   }
 }
@@ -90,7 +82,7 @@ function onInput(type) {
 }
 
 function moveMap(direction, multi = 1) {
-  const tokens = document.querySelectorAll(".move-wrapper")
+  const tokens = document.querySelectorAll('.move-wrapper')
 
   const tokensPosition = []
 
@@ -111,56 +103,52 @@ function moveMap(direction, multi = 1) {
   mapLeft = getStyle.left.slice(0, -2)
   mapTop = getStyle.top.slice(0, -2)
 
-  if(direction === 'left'){
-    map.style.left = Number(mapLeft) + (10 * multi) + "px"
-    mapLeft += (10 * multi) 
-  }
-  
-  if(direction === 'top'){
-    map.style.top = Number(mapTop) + (10 * multi) + "px"
-    mapTop += (10 * multi) 
+  if (direction === 'left') {
+    map.style.left = Number(mapLeft) + 10 * multi + 'px'
+    mapLeft += 10 * multi
   }
 
-  if(direction === 'bottom'){
-    map.style.top = Number(mapTop) - (10 * multi) + "px"
-    mapTop -= (10 * multi) 
-  
+  if (direction === 'top') {
+    map.style.top = Number(mapTop) + 10 * multi + 'px'
+    mapTop += 10 * multi
   }
 
-  if(direction === 'right'){
-    map.style.left = Number(mapLeft) - (10 * multi) + "px"
-    mapLeft -= (10 * multi) 
+  if (direction === 'bottom') {
+    map.style.top = Number(mapTop) - 10 * multi + 'px'
+    mapTop -= 10 * multi
+  }
+
+  if (direction === 'right') {
+    map.style.left = Number(mapLeft) - 10 * multi + 'px'
+    mapLeft -= 10 * multi
   }
 }
 
-function moveTokensByMapMove(direction, multi, tokens){
+function moveTokensByMapMove(direction, multi, tokens) {
   tokens.forEach(token => {
-    if(direction === 'left'){
-      token.el.style.left = Number(token.left) + (10 * multi) + "px"
+    if (direction === 'left') {
+      token.el.style.left = Number(token.left) + 10 * multi + 'px'
     }
-    
-    if(direction === 'top'){
-      token.el.style.top = Number(token.top) + (10 * multi) + "px"
+
+    if (direction === 'top') {
+      token.el.style.top = Number(token.top) + 10 * multi + 'px'
     }
-  
-    if(direction === 'bottom'){
-      token.el.style.top = Number(token.top) - (10 * multi) + "px"
-    
+
+    if (direction === 'bottom') {
+      token.el.style.top = Number(token.top) - 10 * multi + 'px'
     }
-  
-    if(direction === 'right'){
-      token.el.style.left = Number(token.left) - (10 * multi) + "px"
+
+    if (direction === 'right') {
+      token.el.style.left = Number(token.left) - 10 * multi + 'px'
     }
   })
-} 
+}
 
 const zoomValue = document.querySelector('#zoom')
-const mapDivContent = document.querySelector(".map .content")
+const mapDivContent = document.querySelector('.map .content')
 function changeZoom() {
-
   // let zoomDiference
 
-  
   if (widthAuto) {
     // if(zoomValue.value > Number(window.getComputedStyle(mapDivContent).height.slice(0, -2) / 100)){
     //   zoomValue.value == '1'
@@ -171,37 +159,36 @@ function changeZoom() {
     //     ? zoomDiference = zoomValue.value + Number(window.getComputedStyle(mapDivContent).height.slice(0, -2) / 100)
     //     : zoomDiference = '*'
     // }
-    mapDivContent.style.height = (zoomValue.value * 100) + '%'
+    mapDivContent.style.height = zoomValue.value * 100 + '%'
   } else {
-    mapDivContent.style.width = (zoomValue.value * 100) + '%'
+    mapDivContent.style.width = zoomValue.value * 100 + '%'
   }
-  mapDivContent.style.top = 0  
-  mapDivContent.style.left = 0  
+  mapDivContent.style.top = 0
+  mapDivContent.style.left = 0
 
   // const tokens = document.querySelectorAll(".move-wrapper")
-  
-  // tokens.forEach(token => {
-  
-  
-  
-  // })
 
+  // tokens.forEach(token => {
+
+  // })
 }
 
 let allTokensLight = true
-function handleTokenLight(){
-  if(!selectedToken){
+function handleTokenLight() {
+  if (!selectedToken) {
     const tokens = document.querySelectorAll('.move-wrapper')
     tokens.forEach(token => {
       allTokensLight
-        ? token.classList.remove("light")
-        : token.classList.add("light")
-    }, allTokensLight = !allTokensLight)
+        ? token.classList.remove('light')
+        : token.classList.add('light')
+    }, (allTokensLight = !allTokensLight))
   } else {
-    const tokenLight = document.querySelector(`.move-wrapper[data-id="${selectedToken}"]`)
+    const tokenLight = document.querySelector(
+      `.move-wrapper[data-id="${selectedToken}"]`
+    )
 
-    tokenLight.classList.toggle("light")
-    tokenLight.classList.remove("selected")
+    tokenLight.classList.toggle('light')
+    tokenLight.classList.remove('selected')
     selectedToken = null
   }
 }
