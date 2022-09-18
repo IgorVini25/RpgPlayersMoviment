@@ -1,21 +1,21 @@
 const map = document.querySelector('.map img');
 
 function changeMap(url = null) {
-  if(!url){
-  const url = prompt('Digite o link do mapa:');
+  if (!url) {
+    const url = prompt('Digite o link do mapa:');
   } // definir mapa por codigo caso precise.
   if (url.trim() !== '') {
-      fetch(url)
-        .then(function (data) {
-          return data.blob()
-        })
-        .then(function (result) {
-          const imgURL = URL.createObjectURL(result)
-          map.src = imgURL
-        })
-        .catch(function (e) {
-          alert('Erro ao acessar a imagem');
-        })
+    fetch(url)
+      .then(function (data) {
+        return data.blob()
+      })
+      .then(function (result) {
+        const imgURL = URL.createObjectURL(result)
+        map.src = imgURL
+      })
+      .catch(function (e) {
+        alert('Erro ao acessar a imagem');
+      })
   } else {
     alert('Erro ao trocar o mapa');
   }
@@ -24,35 +24,31 @@ function changeMap(url = null) {
 tokensDiv = document.querySelector('.tokens')
 
 function addToken() {
-  const file = prompt('Digite o caminho da Imagem')
-
+  const file = prompt('Digite o caminho da Imagem');
   $(".tokens").append(`
     <div class="move-wrapper">
-      <div class="move">
         <img src="./img/tokens/${file}.png" class="token" />
-      </div>
     </div>
   `);
   //moveElements()
 }
 
 function removeToken() {// fix
-    $(`.move-wrapper.selected`).remove()
-    selectedToken = null;
+  $(`.move-wrapper.selected`).remove()
+  selectedToken = null;
 }
 
-function changeTokenSize() {
-  const size = document.querySelector('#token-size').value + 'px'
-  if (!selectedToken) {
-    const tokens = $('.move-wrapper .move img')
-    $.each(tokens, (index, val) => {
-      $(val).height(size)
-    })
-  } else {
-    $(`.move-wrapper[data-id="${selectedToken}"] .move img`).height(size)
 
-    $(`.move-wrapper[data-id="${selectedToken}"]`).removeClass('selected')
-    selectedToken = null
+
+
+function changeTokenSize() {
+  const size = $("#token-size").val();
+  if($(".move-wrapper.selected").length){
+    $('.move-wrapper.selected img').height(size);
+    $(".move-wrapper.selected").removeClass("selected");
+
+  } else {
+    $('.move-wrapper img').height(size);
   }
 }
 
@@ -164,22 +160,12 @@ function changeZoom() {
   // })
 }
 
-let allTokensLight = true
-function handleTokenLight() {
-  if (!selectedToken) {
-    const tokens = document.querySelectorAll('.move-wrapper')
-    tokens.forEach(token => {
-      allTokensLight
-        ? token.classList.remove('light')
-        : token.classList.add('light')
-    }, (allTokensLight = !allTokensLight))
-  } else {
-    const tokenLight = document.querySelector(
-      `.move-wrapper[data-id="${selectedToken}"]`
-    )
 
-    tokenLight.classList.toggle('light')
-    tokenLight.classList.remove('selected')
-    selectedToken = null
+function handleTokenLight() {
+  if($(".move-wrapper").length === 0) {
+    $(".move-wrapper").toggleClass('"light');
+  } else {
+    $(".move-wrapper.selected").toggleClass("light").removeClass("selected");
+    selectedToken = null;
   }
 }
