@@ -43,7 +43,8 @@ function removeToken() {// fix
 
 function changeTokenSize() {
   const size = $("#token-size").val();
-  if($(".move-wrapper.selected").length){
+
+  if ($(".move-wrapper.selected").length) {
     $('.move-wrapper.selected img').height(size);
     $(".move-wrapper.selected").removeClass("selected");
 
@@ -53,20 +54,10 @@ function changeTokenSize() {
 }
 
 let widthAuto = false
-function onInput(type) {
-  const width = document.querySelector('#width')
-  const height = document.querySelector('#height')
-  const map = document.querySelector('.map')
-  if (type === 'width-height') {
-    if (width.checked && !height.checked) {
-      map.classList.add('width-auto')
-      widthAuto = true
-    } else {
-      map.classList.remove('width-auto')
-      widthAuto = false
-    }
-  }
-}
+
+$("#width").on("click", () => {
+  $(".map").toggleClass("width-auto");
+})
 
 function moveMap(direction, multi = 1) {
   const tokens = document.querySelectorAll('.move-wrapper')
@@ -162,7 +153,7 @@ function changeZoom() {
 
 
 function handleTokenLight() {
-  if($(".move-wrapper").length === 0) {
+  if ($(".move-wrapper").length === 0) {
     $(".move-wrapper").toggleClass('"light');
   } else {
     $(".move-wrapper.selected").toggleClass("light").removeClass("selected");
