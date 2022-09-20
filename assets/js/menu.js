@@ -151,12 +151,18 @@ function changeZoom() {
   // })
 }
 
-
+let allTokensLight = false
 function handleTokenLight() {
-  if ($(".move-wrapper").length === 0) {
-    $(".move-wrapper").toggleClass('"light');
+  if(selectedToken === null){
+      allTokensLight
+      ? $(".move-wrapper").removeClass('light')
+      : $(".move-wrapper").addClass('light')
+      allTokensLight = !allTokensLight
   } else {
     $(".move-wrapper.selected").toggleClass("light").removeClass("selected");
     selectedToken = null;
   }
+  $(".move-wrapper.light").length === $(".move-wrapper").length
+    ? allTokensLight = true
+    : allTokensLight = false
 }

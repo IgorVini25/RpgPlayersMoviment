@@ -8,7 +8,6 @@ $('.move-wrapper').each((index, val) => {
       $(val).addClass('selected');
     } else {
       selectedToken = null
-      $(val).removeClass('selected')
     }
   })
 })
