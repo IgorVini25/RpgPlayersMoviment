@@ -166,3 +166,9 @@ function handleTokenLight() {
     ? allTokensLight = true
     : allTokensLight = false
 }
+
+$(document).on('input', '#light', function() {
+  $('#light + p').html( $(this).val() + "%" );
+  $(".map .map-img img").css("filter", `brightness(${$(this).val() / 100})`)
+});
+
