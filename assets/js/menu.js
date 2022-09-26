@@ -27,10 +27,19 @@ function addToken() {
   const file = prompt('Digite o caminho da Imagem');
   $(".tokens").append(`
     <div class="move-wrapper">
-        <img src="./img/tokens/${file}.png" class="token" />
+        <img src="./assets/img/tokens/${file}.png" class="token" />
     </div>
   `);
-  //moveElements()
+  $(".move-wrapper:last-child").draggable()
+  $(".move-wrapper:last-child").click(() => {
+    $(".move-wrapper").removeClass('selected')
+    if (index !== selectedToken) {
+      selectedToken = index;
+      $(val).addClass('selected');
+    } else {
+      selectedToken = null
+    }
+  })
 }
 
 function removeToken() {// fix
