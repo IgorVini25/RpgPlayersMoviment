@@ -30,15 +30,18 @@ function addToken() {
         <img src="./assets/img/tokens/${file}.png" class="token" />
     </div>
   `);
-  $(".move-wrapper:last-child").draggable()
-  $(".move-wrapper:last-child").click(() => {
-    $(".move-wrapper").removeClass('selected')
-    if (index !== selectedToken) {
-      selectedToken = index;
-      $(val).addClass('selected');
-    } else {
-      selectedToken = null
-    }
+  $(".move-wrapper").each((index, val) => {
+    $(val).unbind()
+    $(val).draggable()
+    $(val).click(() => {
+      $(".move-wrapper").removeClass('selected')
+      if (index !== selectedToken) {
+        selectedToken = index;
+        $(val).addClass('selected');
+      } else {
+        selectedToken = null
+      }
+    })
   })
 }
 
