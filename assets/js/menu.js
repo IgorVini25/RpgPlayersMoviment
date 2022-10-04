@@ -1,8 +1,8 @@
-const map = document.querySelector('.map img');
+const map = document.querySelector('.map img')
 
 function changeMap(url = null) {
   if (!url) {
-    const url = prompt('Digite o link do mapa:');
+    const url = prompt('Digite o link do mapa:')
   } // definir mapa por codigo caso precise.
   if (url.trim() !== '') {
     fetch(url)
@@ -14,30 +14,30 @@ function changeMap(url = null) {
         map.src = imgURL
       })
       .catch(function (e) {
-        alert('Erro ao acessar a imagem');
+        alert('Erro ao acessar a imagem')
       })
   } else {
-    alert('Erro ao trocar o mapa');
+    alert('Erro ao trocar o mapa')
   }
 }
 
 tokensDiv = document.querySelector('.tokens')
 
 function addToken() {
-  const file = prompt('Digite o caminho da Imagem');
-  $(".tokens").append(`
+  const file = prompt('Digite o caminho da Imagem')
+  $('.tokens').append(`
     <div class="move-wrapper">
         <img src="./assets/img/tokens/${file}.png" class="token" />
     </div>
-  `);
-  $(".move-wrapper").each((index, val) => {
+  `)
+  $('.move-wrapper').each((index, val) => {
     $(val).unbind()
     $(val).draggable()
     $(val).click(() => {
-      $(".move-wrapper").removeClass('selected')
+      $('.move-wrapper').removeClass('selected')
       if (index !== selectedToken) {
-        selectedToken = index;
-        $(val).addClass('selected');
+        selectedToken = index
+        $(val).addClass('selected')
       } else {
         selectedToken = null
       }
@@ -45,30 +45,26 @@ function addToken() {
   })
 }
 
-function removeToken() {// fix
-  $(`.move-wrapper.selected`).remove()
-  selectedToken = null;
+function createHide() {
+  $('.squares').append(`<div class="square"></div>`)
+  $('.square').draggable().resizable()
 }
 
-
-
-
 function changeTokenSize() {
-  const size = $("#token-size").val();
+  const size = $('#token-size').val()
 
-  if ($(".move-wrapper.selected").length) {
-    $('.move-wrapper.selected img').height(size);
-    $(".move-wrapper.selected").removeClass("selected");
-
+  if ($('.move-wrapper.selected').length) {
+    $('.move-wrapper.selected img').height(size)
+    $('.move-wrapper.selected').removeClass('selected')
   } else {
-    $('.move-wrapper img').height(size);
+    $('.move-wrapper img').height(size)
   }
 }
 
 let widthAuto = false
 
-$("#width").on("click", () => {
-  $(".map").toggleClass("width-auto");
+$('#width').on('click', () => {
+  $('.map').toggleClass('width-auto')
 })
 
 function moveMap(direction, multi = 1) {
@@ -163,24 +159,38 @@ function changeZoom() {
   // })
 }
 
-let allTokensLight = false
-function handleTokenLight() {
-  if(selectedToken === null){
-      allTokensLight
-      ? $(".move-wrapper").removeClass('light')
-      : $(".move-wrapper").addClass('light')
-      allTokensLight = !allTokensLight
-  } else {
-    $(".move-wrapper.selected").toggleClass("light").removeClass("selected");
-    selectedToken = null;
-  }
-  $(".move-wrapper.light").length === $(".move-wrapper").length
-    ? allTokensLight = true
-    : allTokensLight = false
-}
+// let allTokensLight = false
+// function handleTokenLight() {
+//   if(selectedToken === null){
+//       lightOnOff("all")
+//       allTokensLight = !allTokensLight
 
-$(document).on('input', '#light', function() {
-  $('#light + p').html( $(this).val() + "%" );
-  $(".map .map-img img").css("filter", `brightness(${$(this).val() / 100})`)
-});
+//   } else {
+//     $(".move-wrapper.selected").toggleClass("light").removeClass("selected");
+//     selectedToken = null;
+//   }
+//   $(".move-wrapper.light").length === $(".move-wrapper").length
+//     ? allTokensLight = true
+//     : allTokensLight = false
+// }
 
+$(document).on('input', '#light', function () {
+  $('#light + p').html($(this).val() + '%')
+  $('.map .map-img img').css('filter', `brightness(${$(this).val() / 100})`)
+})
+
+// function lightOnOff(token){
+//   const mapSrc = $(".map .map-img img").attr("src")
+//   const mapWidth = $(".map .map-img img").css("width")
+//   const mapHeight = $(".map .map-img img").css("height")
+//   const tokenMap = `<img class="token-map" src="${mapSrc}" width="${mapWidth}" height="${mapHeight}" />`
+
+//   if(token === "all"){
+
+//     allTokensLight
+//       ? $(".move-wrapper .token-map").remove()
+//       : $(".move-wrapper").append(tokenMap)
+
+//   }
+
+// }

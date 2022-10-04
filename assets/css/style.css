@@ -13,10 +13,19 @@ body{
   overflow: hidden;
 }
 
+.square{
+  background: #000;
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  z-index: 10;
+}
+
 .map{
   width: 80%;
   height: 100%;
-  overflow: hidden;
   position: relative;
 }
 
@@ -68,12 +77,15 @@ body{
 
 .move-wrapper{
   position: absolute;
-  top: 50%;
+  top: 25%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: fit-content;
-  height: fit-content;
   z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 120px;
+  height: 120px;
 }
 
 .move-wrapper.active{
@@ -102,17 +114,14 @@ body{
 
 .token{
   height: 75px;
+  position: absolute;
+  z-index: 999;
 }
 
-.move-wrapper.light{
-  padding: 1rem 1.8rem;
-  background: rgba(255, 255, 255, 0.5);
-  border-radius: 50%;
-  -webkit-box-shadow: 0px 0px 50px 1px rgba(255,255,255,1);
--moz-box-shadow: 0px 0px 50px 1px rgba(255,255,255,1);
-box-shadow: 0px 0px 50px 1px rgba(255,255,255,1);
+.token-map{
+  position: absolute;
+  z-index: 2;
 }
-
 
 .move-wrapper.selected{
   background: #fff;
@@ -294,4 +303,39 @@ box-shadow: 0px 0px 50px 1px rgba(255,255,255,1);
 }
 .switch--shadow:checked + label:after {
   transform: translateX(30px);
+}
+
+.hide-map{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: .5rem;
+  border-bottom: 1px solid #fff;
+}
+
+.hide-map button{
+  border: none;
+  background: #cecece;
+  color: #000;
+  text-align: center;
+  width: 75%;
+}
+
+.trash{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem 0;
+  background: #e83f5b;
+  color: #fff;
+  font-size: 1.2rem;
+  width: 85%;
+  margin: 0 auto;
+  margin-top: 1rem;
+  border-radius: 10px;
+  transition: .3s;
+}
+
+.trash:hover{
+  filter: brightness(0.8);
 }
