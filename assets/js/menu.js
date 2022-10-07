@@ -67,67 +67,44 @@ $('#width').on('click', () => {
   $('.map').toggleClass('width-auto')
 })
 
-function moveMap(direction, multi = 1) {
-  const tokens = document.querySelectorAll('.move-wrapper')
+function lockAndUnlockMap(btn) {
+  if($(btn).text() === "Desbloquear mapa"){
+    $(btn).text("Bloquear mapa")
 
-  const tokensPosition = []
-
-  tokens.forEach(token => {
-    const tokenTop = token.style.top.slice(0, -2) || '50%'
-    const tokenLeft = token.style.left.slice(0, -2) || '50%'
-
-    tokensPosition.push({
-      el: token,
-      top: tokenTop,
-      left: tokenLeft
-    })
-  })
-
-  moveTokensByMapMove(direction, multi, tokensPosition)
-
-  const getStyle = window.getComputedStyle(map)
-  mapLeft = getStyle.left.slice(0, -2)
-  mapTop = getStyle.top.slice(0, -2)
-
-  if (direction === 'left') {
-    map.style.left = Number(mapLeft) + 10 * multi + 'px'
-    mapLeft += 10 * multi
-  }
-
-  if (direction === 'top') {
-    map.style.top = Number(mapTop) + 10 * multi + 'px'
-    mapTop += 10 * multi
-  }
-
-  if (direction === 'bottom') {
-    map.style.top = Number(mapTop) - 10 * multi + 'px'
-    mapTop -= 10 * multi
-  }
-
-  if (direction === 'right') {
-    map.style.left = Number(mapLeft) - 10 * multi + 'px'
-    mapLeft -= 10 * multi
+    $(".map").draggable()
+    $(".map").draggable("enable")
+  } else {
+    $(btn).text("Desbloquear mapa")
+    $(".map").draggable("disable")
   }
 }
 
-function moveTokensByMapMove(direction, multi, tokens) {
-  tokens.forEach(token => {
-    if (direction === 'left') {
-      token.el.style.left = Number(token.left) + 10 * multi + 'px'
-    }
+let isTokensFloating = false
+function floatToken(btn){
+  if($(btn).text() === "Flutuar tokens"){
 
-    if (direction === 'top') {
-      token.el.style.top = Number(token.top) + 10 * multi + 'px'
-    }
+    isTokensFloating = true
+    $(btn).text("Parar de flutuar tokens")
+    
+    $(".map").on("dragstop", function(event, ui){
+      const topDif = ui.position.top - ui.originalPosition.top
+      const leftDif = ui.position.left - ui.originalPosition.left
 
-    if (direction === 'bottom') {
-      token.el.style.top = Number(token.top) - 10 * multi + 'px'
-    }
+      if($(ui.helper).hasClass("map")){
+        $(".move-wrapper").each((index, val) => {
+          const tokenTop = $(val).css("top").slice(0, -2)
+          const tokenLeft = $(val).css("left").slice(0, -2)
 
-    if (direction === 'right') {
-      token.el.style.left = Number(token.left) - 10 * multi + 'px'
-    }
-  })
+          $(val).css("top", `${tokenTop - topDif}px`)
+          $(val).css("left", `${tokenLeft - leftDif}px`)
+        })
+      }
+    
+    })
+  } else {
+    $(btn).text("Flutuar tokens")
+    isTokensFloating = false
+  }
 }
 
 const zoomValue = document.querySelector('#zoom')

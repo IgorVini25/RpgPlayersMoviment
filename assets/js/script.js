@@ -45,7 +45,6 @@ function touchHandler(event) {
   )
 
   touch.target.dispatchEvent(simulatedEvent)
-  event.preventDefault()
 }
 
 function init() {

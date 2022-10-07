@@ -45,17 +45,11 @@
           <button onclick="changeZoom()" id="token-size-btn">Atualizar</button>
         </div>
         <button><b>POSICIONAMENTO</b></button>
-        <div class="map-position-buttons">
-          <button onclick="moveMap('left')">←</button>
-          <button onclick="moveMap('top')">↑</button>
-          <button onclick="moveMap('bottom')">↓</button>
-          <button onclick="moveMap('right')">→</button>
+        <div class="one-button map-menu">
+          <button onclick="lockAndUnlockMap(this)">Desbloquear mapa</button>
         </div>
-        <div class="map-position-buttons">
-          <button onclick="moveMap('left', 5)">←<br>←</button>
-          <button onclick="moveMap('top', 5)">↑↑</button>
-          <button onclick="moveMap('bottom', 5)">↓↓</button>
-          <button onclick="moveMap('right', 5)">→<br>→</button>
+        <div class="one-button">
+          <button onclick="floatToken(this)">Flutuar tokens</button>
         </div>
         <button><b>MODIFICAÇÕES</b></button>
         <div class="input">
@@ -65,7 +59,7 @@
           Névoa<input type="range" id="smoke" value="0" min="0.0" max="100.0"><p>0%</p></input>
         </div>
         <button><b>TAMPAR MAPA</b></button>
-        <div class="hide-map">
+        <div class="one-button">
           <button onclick="createHide()">Criar ocultador</button>
         </div>
       </div>
