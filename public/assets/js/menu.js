@@ -40,9 +40,46 @@ function addToken() {
   })
 }
 
+let squareId = 0
 function createHide() {
-  $('.squares').append(`<div class="square"></div>`)
-  $('.square').draggable().resizable()
+  $('.squares').append(`<div class="square" data-id="${squareId}"></div>`)
+  $('.square').draggable().resizable({
+    resize: handleSquare
+  })
+
+  const lastSquare = $('.square:last-child')
+  tabletopInfos.map.hideSquares.push({
+    id: squareId,
+    size: {
+      width: $(lastSquare).css('width'),
+      height: $(lastSquare).css('height')
+    },
+    position: {
+      top: $(lastSquare).css('top'),
+      left: $(lastSquare).css('left')
+    }
+  })
+
+  squareId++
+}
+
+function handleSquare(event, ui) {
+  if (event.type === 'resize') {
+    tabletopInfos.map.hideSquares.forEach(square => {
+      if (square.id == event.target.dataset.id) {
+        square.size = ui.size
+        square.position = ui.position
+      }
+    })
+  }
+  if (event.type === 'drag') {
+    tabletopInfos.map.hideSquares.forEach(square => {
+      if (square.id == event.target.dataset.id) {
+        square.size = ui.size
+        square.position = ui.position
+      }
+    })
+  }
 }
 
 function changeTokenSize() {
@@ -94,30 +131,28 @@ function floatToken(btn) {
   }
 }
 
-const zoomValue = document.querySelector('#zoom')
-const mapDivContent = document.querySelector('.map .content')
+let currentZoom = 1
 function changeZoom() {
-  mapDivContent.style.width = zoomValue.value * 100 + '%'
+  const zoomValue = $('#zoom').val()
+
+  $('.move-wrapper img').each((index, val) => {
+    const height = $(val).css('height').slice(0, -2)
+
+    $(val).css('height', `${(height / currentZoom) * zoomValue}`)
+  })
+
+  $('.map .content').css('transform', `scale(${zoomValue})`)
+  currentZoom = zoomValue
 }
-
-// let allTokensLight = false
-// function handleTokenLight() {
-//   if(selectedToken === null){
-//       lightOnOff("all")
-//       allTokensLight = !allTokensLight
-
-//   } else {
-//     $(".move-wrapper.selected").toggleClass("light").removeClass("selected");
-//     selectedToken = null;
-//   }
-//   $(".move-wrapper.light").length === $(".move-wrapper").length
-//     ? allTokensLight = true
-//     : allTokensLight = false
-// }
 
 $(document).on('input', '#light', function () {
   $('#light + p').html($(this).val() + '%')
-  $('.map .map-img img').css('filter', `brightness(${$(this).val() / 100})`)
+  $('.map').css('filter', `brightness(${$(this).val() / 100})`)
+})
+
+$(document).on('input', '#fog', function () {
+  $('#fog + p').html($(this).val() + '%')
+  $('.map .fog').css('opacity', `${$(this).val() / 100}`)
 })
 
 function invertToken() {

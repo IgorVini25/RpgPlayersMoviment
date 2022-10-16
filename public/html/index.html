@@ -18,20 +18,20 @@
   <body>
     <div class="map">
       <div class="content">
+        <div class="fog"></div>
         <div class="map-img">
           <img src="./assets/img/maps/ordem.webp" class="before-move">
         </div>
-        <div class="tokens">
-          <div class="move-wrapper">
-            <img src="./assets/img/tokens/alessandro.png" class="token" />
-          </div>
-          <div class="move-wrapper">
-            <img src="./assets/img/tokens/manoel.png" class="token" />
-          </div>
-        </div>
         <div class="squares"></div>
       </div>
-
+      <div class="tokens">
+        <div class="move-wrapper">
+          <img src="./assets/img/tokens/alessandro.png" class="token" />
+        </div>
+        <div class="move-wrapper">
+          <img src="./assets/img/tokens/manoel.png" class="token" />
+        </div>
+      </div>
     </div>
     <div class="menu">
       <div class="dropdown">
@@ -57,7 +57,7 @@
             Iluminação<input type="range" id="light" value="100" min="0.0" max="100.0"><p>100%</p></input>
           </div>
           <div class="input">
-            Névoa<input type="range" id="smoke" value="0" min="0.0" max="100.0"><p>0%</p></input>
+            Névoa<input type="range" id="fog" value="0" min="0.0" max="100.0"><p>0%</p></input>
           </div>
           <button><b>TAMPAR MAPA</b></button>
           <div class="one-button">

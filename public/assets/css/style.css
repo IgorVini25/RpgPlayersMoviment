@@ -102,6 +102,15 @@ body {
   transform: rotateY(180deg);
 }
 
+.fog{
+  background: #fff;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  position: absolute;
+}
+
 .map-position-buttons {
   display: flex;
   gap: .5rem;
